@@ -1,15 +1,16 @@
 FROM alpine:3.5
-MAINTAINER Josh VanderLinden <codekoala@gmail.com>
+MAINTAINER  Oz Tiram <oz123@gmail.com>
+
 
 RUN apk update && \
-    apk add py-pip && \
+    apk add py-pip py-gunicorn && \
     pip install --upgrade pip && \
-    mkdir -p /srv/pypi
+    mkdir -p /srv/pypi \
 
-RUN pip install -U passlib pypiserver[cache]==1.2.1
+RUN pip install -U passlib pypiserver==1.2.1 watchdog
 
-EXPOSE 80
 VOLUME ["/srv/pypi"]
 
-ADD entrypoint.sh /
-CMD ["/entrypoint.sh"]
+ADD entrypoint.sh /usr/bin/
+
+CMD ["/usr/bin/entrypoint.sh"]
