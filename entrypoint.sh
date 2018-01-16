@@ -17,7 +17,7 @@ if [[ "${PYPI_OVERWRITE}" != "" ]]; then
 fi
 
 exec gunicorn -w${GUNICORN_WORKERS}  \
-	"pypiserver:app(root='/srv/pypi', verbosity=2, port=${PYPI_PORT}, \
+	"pypiserver:app(root='${PYPI_ROOT}', verbosity=2, port=${PYPI_PORT}, \
                         authenticated=['update', 'list', 'download'], \
 		        password_file='${PYPI_PASSWD_FILE}')" \
      --error-logfile /dev/stdout \
