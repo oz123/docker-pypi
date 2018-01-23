@@ -21,5 +21,5 @@ exec gunicorn -w${GUNICORN_WORKERS}  \
                         authenticated=['update', 'list', 'download'], \
 		        password_file='${PYPI_PASSWD_FILE}')" \
      --error-logfile /dev/stdout \
-     --access-logfile /dev/stdaout \
+     --access-logfile /dev/stdout \
      --bind=0.0.0.0:${PYPI_PORT}
