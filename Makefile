@@ -26,8 +26,10 @@ push:   ## push to docker hub
 	docker push $(IMG_TAG)
 
 run:    ## run a local copy
-	docker run -it --rm --name pypi -it --rm \
-               --name pypi
+	docker run -it -v $(CURDIR)/secrets.txt:/etc/pypiserver/.htpasswd \
+		-v $(CURDIR)/packages/:/srv/pypi/ \
+		-p 9001:9001 \
+		--rm --name pypi $(IMG_TAG)
 
 add-user: SECRETS_FILE ?= /srv/pypi/secrets.txt
 add-user:  ## add a user to a local http secrets file
