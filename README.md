@@ -1,31 +1,21 @@
 PyPI Server
 ===========
 
-[![](https://images.microbadger.com/badges/image/codekoala/pypi.svg)](https://microbadger.com/images/codekoala/pypi "Get your own image badge on microbadger.com")
-
 This is a simple PyPI server that can be used to host internal packages and
 versions of packages that are suitable for use with proprietary products.
 
 Usage
 -----
 
-If you're not dealing with the Git repo but running the container directly from
-the Docker index, you can use commands such as the following:
+make docker-build
+make docker-run
 
-    sudo mkdir -p /srv/pypi             # local directory where packages reside
-    sudo touch /srv/pypi/.htpasswd      # credentials file for adding packages
-    docker run -t -i --rm \             # remove container when stopped
-        -h pypi.local \                 # hostname
-        -v /srv/pypi:/srv/pypi:rw \     # host packages from local directory
-        -p 8080:80 \                    # expose port 80 as port 8080
-        --name pypi \                   # container name
-        codekoala/pypi                  # docker repository
-
-Once running, you should be able to visit http://localhost:8080 to see the
+Once running, you should be able to visit http://localhost:9001 to see the
 landing page for your very own PyPI server.
 
 You can add Python packages to the server simply by including the tarballs,
 zips, wheels, eggs, etc in your `/srv/pypi` directory.
+
 
 Configuration
 -------------
@@ -33,16 +23,7 @@ Configuration
 There are some environment variables that may be set to override the default
 behavior:
 
-* ``PYPI_ROOT``: path within the container where packages will be stored.
-  Defaults to ``/srv/pypi``.
-* ``PYPI_PORT``: port to bind to receive requests. Defaults to ``80``.
-* ``PYPI_PASSWD_FILE``: path to authentication file. Defaults to
-  ``/srv/pypi/.htpasswd``.
-* ``PYPI_OVERWRITE``: allow existing packages to be overwritten. Defaults to
-  ``false``.
-* ``PYPI_AUTHENTICATE``: list of (case-insensitive) actions to authenticate.
-  Default to `update`.
-* ``PYPI_EXTRA``: any additional parameters to ``pypi-server``.
+See them inside `pypi.wsgi`
 
 Building Your Own
 -----------------
@@ -58,9 +39,6 @@ this container, run:
 
     make run
 
-This will spin up the `pypi-server` command within container, and it will be
-exposed on port `8080` on your host system. To test that the container is
-working, visit http://localhost:8080 in your browser.
 
 Adding Internal Packages
 ------------------------
