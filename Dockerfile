@@ -3,7 +3,7 @@ MAINTAINER  Oz Tiram <oz123@gmail.com>
 
 
 RUN apk update && \
-    apk add py-pip py-gunicorn && \
+    apk add py-pip uwsgi uwsgi-python && \
     pip install --upgrade pip
 
 RUN pip install -U passlib pypiserver==1.2.1 watchdog
