@@ -33,7 +33,7 @@ run:    ## run a local copy
 
 add-user: SECRETS_FILE ?= /srv/pypi/secrets.txt
 add-user:  ## add a user to a local http secrets file
-	 docker run -v `pwd`:/srv/pypi/ -it oz123/pypi /usr/bin/pypi-adduser.py $(SECRETS_FILE)
+	 docker run -u root -v `pwd`:/srv/pypi/ -it oz123/pypi /usr/bin/pypi-adduser.py $(SECRETS_FILE)
 
 clean:
 	docker rmi `docker images -q $(IMG_TAG)`
