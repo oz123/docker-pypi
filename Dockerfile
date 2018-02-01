@@ -15,7 +15,7 @@ RUN sed '257 a \        sys.argv.remove(k) if k in sys.argv else 1\n' -i /usr/li
 VOLUME ["/srv/pypi"]
 VOLUME ["/etc/pypiserver"]
 
-RUN adduser -S pypi
+RUN adduser -D pypi
 ADD entrypoint.sh /usr/bin/
 ADD pypi-adduser.py /usr/bin/pypi-adduser.py
 ADD pypi.wsgi /run/pypi/
