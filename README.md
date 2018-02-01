@@ -7,8 +7,10 @@ versions of packages that are suitable for use with proprietary products.
 Usage
 -----
 
+```
 make docker-build
 make docker-run
+```
 
 Once running, you should be able to visit http://localhost:9001 to see the
 landing page for your very own PyPI server.
