@@ -7,7 +7,7 @@ from pypiserver import app
 authenticated = os.getenv('PYPI_AUTHENTICATE', "").split()
 
 if not authenticated:
-    authenticated = ['list', 'update', 'download'],
+    authenticated = ['list', 'update', 'download']
 
 wsgi_app = app(
     root=os.getenv('PYPI_ROOT', '/srv/pypi'),
