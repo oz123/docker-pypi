@@ -24,10 +24,6 @@ wsgi_app = app(
     password_file='${PYPI_PASSWD_FILE}'
 )
 EOF
-
-# allow existing packages to be overwritten
-if [[ "${PYPI_OVERWRITE}" != "" ]]; then
-    _extra="${_extra} --overwrite"
 fi
 
 exec uwsgi --need-app --plugins-dir /usr/lib/uwsgi --plugin python --processes ${UWSGI_PROCS} --threads ${UWSGI_THREADS} --http-socket :${PYPI_PORT} --wsgi-file=/usr/lib/python2.7/site-packages/pypiserver/uwsgi.py --callable=wsgi_app --master
