@@ -30,6 +30,12 @@ run:    ## run a local copy
 		-v $(CURDIR)/packages/:/srv/pypi/ \
 		-p 9001:9001 \
 		--rm --name pypi $(IMG_TAG)
+run-as-service:
+	docker run -d --restart always \
+		-v $(CURDIR)/secrets.txt:/etc/pypiserver/.htpasswd \
+		-v $(CURDIR)/packages/:/srv/pypi/ -p 9001:9001 \
+		--name pypi_server $(IMG_TAG)
+
 
 add-user: SECRETS_FILE ?= /srv/pypi/secrets.txt
 add-user:  ## add a user to a local http secrets file
