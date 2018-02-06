@@ -14,5 +14,6 @@ wsgi_app = app(
     verbosity=os.getenv('PYPI_VERBOSITY', 2),
     port=os.getenv('PYPI_PORT', 9000),
     authenticated=authenticated,
-    password_file=os.getenv('PYPI_PASSWD_FILE', '/etc/pypiserver/.htpasswd')
+    password_file=os.getenv('PYPI_PASSWD_FILE', '/etc/pypiserver/.htpasswd'),
+    cache_control=20
     )
